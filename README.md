@@ -15,4 +15,4 @@ Real-time frontend dashboard for an AI-powered Lost & Found and crowd-safety sys
 
 HTML • CSS • Vanilla JavaScript • REST API • WebSockets
 
-Built for the **Godavari Pushkaralu 2027** rehearsal system.
+Built for the **Godavari Pushkaralu** rehearsal system.
