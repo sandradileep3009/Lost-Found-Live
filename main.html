@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lost &amp; Found — live</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="header">
+    <div class="brand">Lost &amp; Found <span>control room</span></div>
+
+    <nav class="views">
+      <button id="view-live" aria-pressed="true">Live</button>
+      <button id="view-sweep" aria-pressed="false">Post-event sweep</button>
+    </nav>
+
+    <div class="header-right">
+      <a class="link" href="handin.html">Hand-in desk</a>
+      <div class="stat"><b class="num" id="stat-indexed">—</b><span>items indexed</span></div>
+      <div class="stat"><b class="num" id="stat-unacked">—</b><span>unacknowledged</span></div>
+      <div class="stat"><b class="num" id="stat-uptime">—</b><span>uptime</span></div>
+      <div class="conn" id="conn" data-state="connecting"><span class="dot"></span><span id="conn-text">connecting</span></div>
+    </div>
+  </header>
+
+  <div class="health" id="health" aria-label="Camera health"></div>
+
+  <div class="main" id="view-main">
+
+    <section class="stage">
+      <div class="grid" id="grid" data-cols="2"></div>
+
+      <div class="legend" id="legend">
+        <div class="legend-item" style="--sw: var(--z-corridor)"><span class="legend-swatch"></span><b>Corridor</b> stairs, gates — alerts</div>
+        <div class="legend-item" style="--sw: var(--z-queue)"><span class="legend-swatch"></span><b>Queue</b> lanes, barricades — alerts</div>
+        <div class="legend-item" style="--sw: var(--z-deposit)"><span class="legend-swatch"></span><b>Deposit</b> seating, lawn — indexed, no alert</div>
+        <div class="legend-item" style="--sw: var(--z-transit)"><span class="legend-swatch"></span><b>Transit</b> open ground — swept later</div>
+        <div class="legend-item" style="--sw: var(--z-exclude)"><span class="legend-swatch"></span><b>Excluded</b> not walkable</div>
+        <div class="legend-note">The same bag alerts on the stairs and stays quiet on the lawn.</div>
+      </div>
+    </section>
+
+    <aside class="rail">
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Alerts</h2>
+          <span class="count" id="alerts-count"></span>
+          <span class="spacer"></span>
+          <button id="alerts-toggle" aria-pressed="false" title="Hide alerts already handled">Hide handled</button>
+        </div>
+        <div class="panel-body" id="alerts">
+          <div class="empty" id="alerts-empty">No obstruction alerts yet. Items in deposit and transit zones are indexed silently and appear in search.</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Search</h2>
+          <span class="count" id="search-count"></span>
+        </div>
+        <div class="searchbar">
+          <input type="search" id="q" placeholder="black backpack" autocomplete="off" spellcheck="false" aria-label="Describe the lost item">
+          <button id="q-clear">Clear</button>
+        </div>
+        <div class="panel-body" id="results"></div>
+        <div class="pager" id="pager" hidden>
+          <button id="page-prev">Previous</button>
+          <button id="page-next">Next</button>
+          <span class="spacer"></span>
+          <span id="page-info" class="num"></span>
+        </div>
+      </section>
+
+    </aside>
+  </div>
+
+  <section class="sweep" id="view-sweep-panel" hidden>
+    <div class="sweep-controls">
+      <select id="sweep-cam" aria-label="Camera to sweep"></select>
+      <button id="sweep-run">Run sweep</button>
+      <button id="sweep-print" disabled>Print list</button>
+      <p>Run once the area has emptied. With nobody in frame there is nothing left to occlude, so this pass finds items the live pipeline could not see.</p>
+    </div>
+    <div id="sweep-out"></div>
+  </section>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
