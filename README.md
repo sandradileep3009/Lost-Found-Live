@@ -1,5 +1,4 @@
-﻿# Lost-Found-Live
-# Lost & Found Live Dashboard
+﻿# Lost & Found Live Dashboard
 
 Real-time frontend dashboard for an AI-powered Lost & Found and crowd-safety system.
 
